@@ -1,7 +1,8 @@
 package br.com.alura.codechella.config;
 
 import br.com.alura.codechella.application.gateways.UserRepository;
-import br.com.alura.codechella.application.usecases.UserCreate;
+import br.com.alura.codechella.application.usecases.CreateUser;
+import br.com.alura.codechella.application.usecases.GetUserList;
 import br.com.alura.codechella.infra.gateways.UserEntityMapper;
 import br.com.alura.codechella.infra.gateways.UserRepositoryImpl;
 import br.com.alura.codechella.infra.persistence.UserRepositoryJpa;
@@ -12,8 +13,13 @@ import org.springframework.context.annotation.Configuration;
 public class UserConfig {
 
     @Bean
-    UserCreate createUser(UserRepository repository) {
-        return new UserCreate(repository);
+    CreateUser createUser(UserRepository repository) {
+        return new CreateUser(repository);
+    }
+
+    @Bean
+    GetUserList getUserList(UserRepository repository) {
+        return new GetUserList(repository);
     }
 
     @Bean
